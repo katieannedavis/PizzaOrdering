@@ -7,11 +7,12 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 import javafx.stage.*;
+import javafx.application.*;
 import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.geometry.*;
+import javafx.scene.text.*;
 
 public class Main extends Application{
     public static void main(String[] args){
@@ -19,48 +20,65 @@ public class Main extends Application{
     }
 
     Stage stage;
+
+    //Customer information
     TextField txtAddress;
+    TextField txtPhone;
+    TextField txtName;
+
+    //Size Radio Buttons
     RadioButton rdoSmall;
     RadioButton rdoMedium;
     RadioButton rdoLarge;
+
+    //Crust Radio Buttons
     RadioButton rdoThin;
     RadioButton rdoThick;
+
+    //Topping Radio Buttons
+    CheckBox chkPepperoni;
+    CheckBox chkSausage;
+    CheckBox chkBeef;
+    CheckBox chkMushrooms;
+    CheckBox chkPineapple;
+    CheckBox chkOnion;
 
     @Override
     public void start(Stage primaryStage){
         stage = primaryStage;
 
-        //Create grid for Name, Phone, and Address textfields
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10,10,10,10));
-        grid.setVgap(10);
-        grid.setHgap(10);
-        grid.setMinWidth(500);
-        grid.setPrefWidth(500);
-        grid.setMaxWidth(800);
-        
-        // Create and add the name label and text field
+        //--Create the top pane--
+
+        Text textHeading = new Text("Order Your Pizza Now!");
+        textHeading.setFont(new Font(20));
+        HBox paneTop = new HBox(textHeading);
+        paneTop.setPadding(new Insets(20,10,20,10));
+
+        //--Create the customer pane--
+        //Create the name label and text field
         Label lblName = new Label("Name: ");
-        final TextField txtName = new TextField();
-        txtName.setPromptText("Enter your name.");
-        GridPane.setConstraints(lblName, 0,1);
-        GridPane.setConstraints(txtName,1,1);
+        txtName = new TextField();
+        txtName.setPrefColumnCount(20);
+        txtName.setPromptText("Enter customer's name.");
+        txtName.setMaxWidth(Double.MAX_VALUE);
+        HBox paneNAME = new HBox(lblName, txtName);
 
+        //Create the phone label and text field
+        Label lblPhone = new Label("Phone: ");
+        txtPhone = new TextField();
+        txtPhone.setPrefColumnCount(20);
+        txtPhone.setPromptText("Enter customer's phone.");
+        txtPhone.setMaxWidth(Double.MAX_VALUE);
+        HBox panePhone = new HBox(lblPhone, txtPhone);
 
-        // Create the phone number label and text field
-        Label lblphone = new Label("Phone Number: ");
-        final TextField txtPhone = new TextField();
-        txtName.setPromptText("Enter your phone number.");
-        GridPane.setConstraints(lblphone, 0, 2);
-        GridPane.setConstraints(txtPhone, 1,2);
+        //Create the address label and text field
+        Label lblAddress = new Label("Address: ");
+        txtAddress = new TextField();
+        txtAddress.setPrefColumnCount(20);
+        txtAddress.setPromptText("Enter customer's address.");
+        txtAddress.setMaxWidth(Double.MAX_VALUE);
+        HBox paneAddress = new HBox(lblAddress, txtAddress);
 
-
-        //Create the scene and the stage
-        Scene scene = new Scene(grid);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Pizza Order");
-        primaryStage.setMinWidth(500);
-        primaryStage.setMaxWidth(900);
-        primaryStage.show();
+        
     }
 }
